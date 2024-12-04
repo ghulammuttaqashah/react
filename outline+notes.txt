@@ -1,0 +1,173 @@
+*********Introduction*********
+-->Defination:
+    ->React is a javascript library for building user interfaces.
+    ->It is used to build single page application.
+    ->It allow us to create reusable components.
+    ->created by facebook
+    ->Uses virtual DOM.
+    ->extension: jsx, javascript xml.
+
+-->Project creation:
+    ->Using vite:
+        -npm create vite@latest
+
+-->Project Structure
+    ->node_modules: this folder contains the external libraries, packages on which out project relies.
+    ->public: contain public assets via url.
+    ->src:
+        -main.jsx: creating root element
+        -app.jsx+app.cs: root component+it's css file.
+        -index.css: main css file.
+    ->index.html: root div and script link.
+    ->json files.
+
+-->React components
+    ->Defination:
+        -A component in React is a reusable piece of UI that acts like a building block for your application.
+                                            or
+        -A component is a small section of code that can include HTML and javascript, function will return it and make it reusable.
+    ->only one component can be returned in the function.
+    ->Fragmaent:
+        -A wrapper used to group multiple components to return it to the fucntion.
+    ->To include javascript in your components you will need to include {} inside this now you will write your javascript code
+    ->How to style react components?
+        -External: good for simple and small applications or tutorials.
+        -Modules
+            *preferred for those components which have their own unique styles.
+            *CSS Modules scope styles locally to the component, avoiding naming conflicts in large projects.
+            *When working on large projects with many reusable components to avoid style conflicts.
+            *Challenges: additional setup, global styles
+        -Inline:
+            *small components,
+            *syntax: const styles={property: "value",.....};
+            
+-->Props(Sample code: Student.jsx):
+    ->Defination:
+        -a way to pass data from one component to another in React.
+        -Props stands for properties.
+        -read-only properties that are shared between the components.
+        -A parent component can send data to child component.
+        -syntax: <component "key=value">
+    ->propTypes:
+        -a mechanism that ensures that the passed value is of the correct datatype.
+        -age: PropTypes.number
+    ->defualtProps
+        -if no value passed then default value will be given
+
+-->Conditional Rendering:
+    ->Defination:
+        -Allows you to control what gets rendered in your application based on certain conditions.
+    ->What we can do with Conditional Rendering?
+        -We can:
+            *show 
+            *hide
+            *change components
+    ->We can do it using the if/else and ternary operator
+    ->Add propTypes if you want.
+
+-->Rendering Lists
+    ->Map method is used to render over the list.
+    ->Add key while rendering because it helps you to keep track of elements.
+        -For example: if an item is updated or removed, only that item will be re-rendered instead of the entire list.
+    ->Sorting the list with the help of localeCompare method inside the sort method.
+    ->Filter method: to filter the data from the list.
+    ->You can make a list reuseable component using props (List.jsx is sample code file for this). 
+    ->You can also put conditional rendering for checking that list that is coming is null or not.
+    ->Give some default props, also so incase of any list not coming, other lists should be rendered.
+    ->PropTypes for the correct version of the string:
+    ->Sample code is: vegetables and fruits example 
+    ->All code is available in List.jsx
+
+-->Click Event:
+    ->A callback is passed to the onClick on button.
+    ->Event object(code profilepicture.jsx):
+        -automatically paseed to the event handler function by the browser when event occurs.
+        -It contains information about the event such as:
+            *Type of event
+            *element that triggered the event.
+            *position of the Modules
+        -benefit: 
+            *You can dynamically manipulate the element that triggered the event without hardcoding its reference.
+
+-->onChange(colorpicker+MyComponent2 has the sample code for this topic):
+    ->Event handler primarly used with form elements.
+    ->Example: <input> <textarea> <select> <radio>
+    ->triggers a function every time the value of input changes.
+    ->MyComponent2.jsx has all the code.
+
+-->Updater function:
+    ->A function passed as an argument to setState() usually.
+    ->Allow for safe update based on the previous state
+    ->It is used when multiple state updates and with asynchronous function
+    ->Good practice is to use the updater function.
+    
+    
+
+*********React Hooks*********
+-->Hooks were added to react in version 16.8
+-->What is a hook?
+    ->Special function that allows functional components to use React features.
+    ->Hooks allow us to "hook" into React features such as state and lifecycle methods.
+    ->Hook Rules:
+        -Hooks can only be called inside React function components.
+        -Hooks can only be called at the top level of a component.
+        -Hooks cannot be conditional
+-->Hooks:
+    ->useState
+        -It allows the creation of a stateful variable and 
+         a setter fucntion to update it's value in the virtual DOM.
+        -Code level(MyComponent.jsx):
+            *First import it form React
+            *when you call it: useState returns a two things 1: stateful variable 2: a function to set it's data.
+        -Object(using updater function): Update the state of the object using updater function(sample code is: MyComponent3).
+            *spread operator used for taking car as object
+        -Array(using updater functions): Update the state of the Array using updater function(sample code is: MyComponent4).
+            *spread operator used for taking foods as copy of array.
+            *map method for display
+            *filter for delete using "!="
+        --Array of objects(): Update the state of the Array of objects using updater function(sample code is: MyComponent5).
+            *map method for display
+            *filter for delete using "!="
+    ->useEffect(): sample code is MyComponent6+MyComponent7
+        -It tells react to do some code when:
+            *This component re-renders
+            *This component mounts
+            *The state of value
+        -Syntax: useEffect(function,[dependencies]);
+            1. useEffect(()=>{}): runs after every re-render
+            2. useEffect(()=>{},[]): runs only on mounts (only first time)
+            3. useEffect(()=>,[value]): runs on mount+value changes
+        -Uses:
+            1. Event listeners (return statement)
+            2. DOM Manipulation
+            3. Subscriptions (real-time update)
+            4. Fetching Data from API
+            5. Cleanup when when a component unmounts(remove component from dom).
+    ->useContext(): sample code is in componentA.jsx and componentD.jsx
+        -Allows you to share values between multiple level of components without passing props through each level.
+        -Problem:
+            *To illustrate, we have many nested components. The component at the top and bottom of the stack need access to the state.
+            *To do this without Context, we will need to pass the state as "props" through each nested component. This is called "prop drilling".
+        -Solution is: useContext() hook.
+        -Set Provider Component
+            1. import {createContext} from "react"
+            2. export const MyContext=createContext();
+            3. <MyContext.Provider value={value}>
+                    </Child>
+                </MyContext.Provider>
+        -Consumer components
+            1. import React,{useContext} from "react";
+            2. import MyContext from "./Parent"
+            3. const Value =useContext(MyContext);
+    ->useRef(): sample code is MyComponent8.jsx
+        -Use Reference does not cause re-renders when it's value changes.
+        -When to use?
+            *when you want a component to remember some information
+            *but you don't want that information to trigger new render
+        -It is helpul with:
+            1.Accessing/Interacting with DOM Elements.
+            2.Handling Focus, Animations, and Transitions
+            3.Managing timer and intervals
+
+
+
