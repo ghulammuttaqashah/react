@@ -175,7 +175,7 @@ input[type="color"]
 }*/
 
 /*
-To do list code
+
 
 body
 {
@@ -278,9 +278,9 @@ li
   padding: 8px 12px;
   font-size: 1.4rem;
   margin-left: 10px;
-}*/
-
-/*body
+}
+/*
+body
 {
   background-color: rgb(156, 86, 222);
   display: flex;
@@ -311,7 +311,7 @@ li
     padding: 25px; 
 }*/
 
-body
+/*body
 {
   display: flex;
   flex-direction: column;
@@ -385,4 +385,4 @@ body
 .reset-button:hover
 {
   background-color: hsl(205, 90%, 50%);
-}
+}*/
